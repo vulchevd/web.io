@@ -60,47 +60,39 @@ const translations = {
 
 // Check if we're using file:// protocol
 const isFileProtocol = window.location.protocol === 'file:';
+// Get the base URL for the site (empty for root-level hosting)
+const baseUrl = '';
 
 // Detect current language from URL
 function getCurrentLanguage() {
   const path = window.location.pathname;
   
-  if (isFileProtocol) {
-    // For file:// URLs, check if the path contains /bg/ or /ru/ folders
-    if (path.includes('/bg/') || path.includes('\\bg\\')) {
-      return 'bg';
-    } else if (path.includes('/ru/') || path.includes('\\ru\\')) {
-      return 'ru';
-    } else {
-      return 'en';
-    }
+  if (path.includes('/bg/') || path.includes('\\bg\\')) {
+    return 'bg';
+  } else if (path.includes('/ru/') || path.includes('\\ru\\')) {
+    return 'ru';
   } else {
-    // For http:// URLs
-    if (path.includes('/bg/') || path === '/bg') {
-      return 'bg';
-    } else if (path.includes('/ru/') || path === '/ru') {
-      return 'ru';
-    } else {
-      return 'en';
-    }
+    return 'en';
   }
 }
 
 // Generate language-specific URL
 function getLanguageUrl(targetLang) {
   const currentPath = window.location.pathname;
-  const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1);
+  const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+  const currentLang = getCurrentLanguage();
   
-  // If we're using file:// protocol, we need to handle paths differently
+  // Extract the current file name
+  let baseName = filename;
+  if (!baseName.endsWith('.html') && baseName !== '') {
+    baseName += '.html';
+  }
+  if (baseName === '') {
+    baseName = 'index.html';
+  }
+  
   if (isFileProtocol) {
-    const currentLang = getCurrentLanguage();
-    
-    // Extract the current file name
-    let baseName = filename || 'index.html';
-    if (!baseName.endsWith('.html')) {
-      baseName += '.html';
-    }
-    
+    // File protocol handling (for local development)
     if (targetLang === 'en') {
       // If we're in a language folder, go up one level
       if (currentLang !== 'en') {
@@ -123,29 +115,20 @@ function getLanguageUrl(targetLang) {
       return '../' + targetLang + '/' + baseName;
     }
   } else {
-    // For regular http:// URLs
-    // If we're in a language folder, extract the filename
-    let baseName = filename;
-    if (!baseName || baseName === '') {
-      baseName = 'index.html';
-    } else if (!baseName.endsWith('.html')) {
-      baseName += '.html';
-    }
-    
-    // Special case for index page
-    if (baseName === 'index.html') {
+    // For web hosting URLs
+    if (baseName === 'index.html' || baseName === '') {
       if (targetLang === 'en') {
-        return '/index.html';
+        return baseUrl + '/';
       } else {
-        return `/${targetLang}/index.html`;
+        return baseUrl + '/' + targetLang + '/';
       }
     }
     
     // For other pages
     if (targetLang === 'en') {
-      return `/${baseName}`;
+      return baseUrl + '/' + baseName;
     } else {
-      return `/${targetLang}/${baseName}`;
+      return baseUrl + '/' + targetLang + '/' + baseName;
     }
   }
 }
@@ -161,10 +144,31 @@ function getImagePath(imageName) {
       return `../images/${imageName}`;
     }
   } else {
+    // For web hosting
     if (currentLang === 'en') {
-      return `images/${imageName}`;
+      return baseUrl + `/images/${imageName}`;
     } else {
-      return `../images/${imageName}`;
+      return baseUrl + `/images/${imageName}`;
+    }
+  }
+}
+
+// Get correct path for a page based on current language
+function getPagePath(pageName, lang) {
+  const currentLang = lang || getCurrentLanguage();
+  
+  if (isFileProtocol) {
+    if (currentLang === 'en') {
+      return pageName;
+    } else {
+      return pageName;
+    }
+  } else {
+    // For web hosting
+    if (currentLang === 'en') {
+      return baseUrl + '/' + pageName;
+    } else {
+      return baseUrl + '/' + currentLang + '/' + pageName;
     }
   }
 }
@@ -178,7 +182,7 @@ function loadHeader() {
   header.innerHTML = `
     <div class="header-container">
       <div class="logo-menu-container">
-        <a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : '/index.html') : (isFileProtocol ? '../index.html' : '/' + currentLang + '/index.html')}" class="logo">
+        <a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}" class="logo">
           <span class="logo-text">Briliant Properties</span>
         </a>
         <div class="menu-toggle">
@@ -189,11 +193,11 @@ function loadHeader() {
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : '/index.html') : (isFileProtocol ? '../index.html' : '/' + currentLang + '/index.html')}">${t.home}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'apartments.html' : '/apartments.html') : (isFileProtocol ? 'apartments.html' : '/' + currentLang + '/apartments.html')}">${t.apartments}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'parking.html' : '/parking.html') : (isFileProtocol ? 'parking.html' : '/' + currentLang + '/parking.html')}">${t.parking}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'about.html' : '/about.html') : (isFileProtocol ? 'about.html' : '/' + currentLang + '/about.html')}">${t.about}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'contact.html' : '/contact.html') : (isFileProtocol ? 'contact.html' : '/' + currentLang + '/contact.html')}">${t.contact}</a></li>
+          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}">${t.home}</a></li>
+          <li><a href="${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
+          <li><a href="${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
+          <li><a href="${getPagePath('about.html', currentLang)}">${t.about}</a></li>
+          <li><a href="${getPagePath('contact.html', currentLang)}">${t.contact}</a></li>
         </ul>
       </nav>
       <div class="language-switcher">
@@ -286,19 +290,19 @@ function loadFooter() {
       <div class="footer-section quick-links">
         <h3>${t.footer.quickLinks}</h3>
         <ul>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : '/index.html') : (isFileProtocol ? '../index.html' : '/' + currentLang + '/index.html')}">${t.home}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'apartments.html' : '/apartments.html') : (isFileProtocol ? 'apartments.html' : '/' + currentLang + '/apartments.html')}">${t.apartments}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'parking.html' : '/parking.html') : (isFileProtocol ? 'parking.html' : '/' + currentLang + '/parking.html')}">${t.parking}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'about.html' : '/about.html') : (isFileProtocol ? 'about.html' : '/' + currentLang + '/about.html')}">${t.about}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'contact.html' : '/contact.html') : (isFileProtocol ? 'contact.html' : '/' + currentLang + '/contact.html')}">${t.contact}</a></li>
+          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}">${t.home}</a></li>
+          <li><a href="${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
+          <li><a href="${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
+          <li><a href="${getPagePath('about.html', currentLang)}">${t.about}</a></li>
+          <li><a href="${getPagePath('contact.html', currentLang)}">${t.contact}</a></li>
         </ul>
       </div>
       <div class="footer-section legal-links">
         <h3>${t.footer.legal}</h3>
         <ul>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'privacy-policy.html' : '/privacy-policy.html') : (isFileProtocol ? 'privacy-policy.html' : '/' + currentLang + '/privacy-policy.html')}">${t.legal.privacy}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'terms-of-service.html' : '/terms-of-service.html') : (isFileProtocol ? 'terms-of-service.html' : '/' + currentLang + '/terms-of-service.html')}">${t.legal.terms}</a></li>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'cookie-policy.html' : '/cookie-policy.html') : (isFileProtocol ? 'cookie-policy.html' : '/' + currentLang + '/cookie-policy.html')}">${t.legal.cookies}</a></li>
+          <li><a href="${getPagePath('privacy-policy.html', currentLang)}">${t.legal.privacy}</a></li>
+          <li><a href="${getPagePath('terms-of-service.html', currentLang)}">${t.legal.terms}</a></li>
+          <li><a href="${getPagePath('cookie-policy.html', currentLang)}">${t.legal.cookies}</a></li>
         </ul>
       </div>
     </div>
@@ -355,8 +359,9 @@ function initComponents() {
       const linkFilename = linkHref.substring(linkHref.lastIndexOf('/') + 1);
       
       if (linkFilename === filename || 
+          (filename === '' && linkFilename === '') ||
           (filename === '' && linkFilename === 'index.html') ||
-          (filename === 'index.html' && linkFilename === 'index.html')) {
+          (filename === 'index.html' && (linkFilename === '' || linkFilename === 'index.html'))) {
         link.classList.add('active');
       }
     });
