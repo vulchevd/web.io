@@ -82,6 +82,10 @@ header {
   z-index: 1002;
 }
 
+.logo {
+  text-decoration: none;
+}
+
 .logo img {
   height: 50px;
   width: auto;
@@ -101,12 +105,14 @@ header {
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   letter-spacing: 1px;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .logo:hover .logo-text {
   color: var(--accent-color-light);
   text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   transform: scale(1.05);
+  text-decoration: none;
 }
 
 .main-nav {
