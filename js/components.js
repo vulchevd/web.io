@@ -60,8 +60,20 @@ const translations = {
 
 // Check if we're using file:// protocol
 const isFileProtocol = window.location.protocol === 'file:';
-// Get the base URL for the site (empty for root-level hosting)
-const baseUrl = '/web.io';
+// Dynamically determine the base URL (repo name) for GitHub Pages project sites
+// For a repo served from https://username.github.io/repoName/ the first path segment
+// after the leading slash is the repo name (e.g. '/repoName'). For user / org sites
+// the first segment does NOT exist, so baseUrl becomes ''.
+let baseUrl = '';
+if (!isFileProtocol) {
+  const segments = window.location.pathname.split('/').filter(Boolean); // remove empty strings
+  // If the first segment looks like a repo name (and not a language code like 'bg') use it.
+  // We treat 'bg', 'ru', 'en' as language folders, so if the first segment is one of those
+  // we leave baseUrl empty. Otherwise we assume it's the project name.
+  if (segments.length && !['bg', 'ru', 'en'].includes(segments[0])) {
+    baseUrl = '/' + segments[0];
+  }
+}
 
 // Detect current language from URL
 function getCurrentLanguage() {
