@@ -61,7 +61,7 @@ const translations = {
 // Check if we're using file:// protocol
 const isFileProtocol = window.location.protocol === 'file:';
 // Get the base URL for the site (empty for root-level hosting)
-const baseUrl = '';
+const baseUrl = '/web.io';
 
 // Detect current language from URL
 function getCurrentLanguage() {
