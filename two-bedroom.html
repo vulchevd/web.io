@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Bedroom Apartment</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <meta name="description" content="Explore our spacious two-bedroom apartments in Sveti Vlas, Bulgaria. Perfect for families.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="content">
+        <div class="container">
+            <h1>Two-Bedroom Apartment</h1>
+            
+            <div class="price-info" style="margin-bottom: 30px; text-align: center;">
+                <span class="price-tag">€185,000</span>
+                <span class="availability-badge limited">Limited</span>
+            </div>
+            
+            <p>Our two-bedroom apartments offer generous space and comfort for families or those who need extra room. With a total area of <strong>78 sq.m</strong>, each apartment features:</p>
+            
+            <ul class="feature-list">
+                <li>Spacious living room with dining area</li>
+                <li>Fully equipped modern kitchen</li>
+                <li>Master bedroom with en-suite bathroom</li>
+                <li>Second bedroom ideal for children or guests</li>
+                <li>Additional family bathroom</li>
+                <li>Large balcony with sea or mountain views</li>
+                <li>Ample storage space throughout</li>
+            </ul>
+            
+            <p>These apartments are perfect for families looking for a comfortable holiday home or permanent residence in a peaceful location with all amenities nearby.</p>
+
+            <div class="gallery">
+                <img src="images/two-bedroom.png" alt="Living area of the two-bedroom apartment" loading="lazy">
+            </div>
+            
+            <div class="apartment-details" style="margin-top: 40px;">
+                <h2>Property Details</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div class="detail-item">
+                        <i class="fas fa-ruler-combined" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <strong>Size:</strong> 78 sq.m
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-bed" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <strong>Bedrooms:</strong> 2
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-bath" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <strong>Bathrooms:</strong> 2
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-car" style="color: var(--accent-color); margin-right: 10px;"></i>
+                        <strong>Parking:</strong> Optional
+                    </div>
+                </div>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 40px;">
+                <a href="#contact-form" class="btn btn-cta">Request More Information</a>
+                <a href="tel:+359885555055" class="btn btn-primary"><i class="fas fa-phone"></i> Call Agent</a>
+                <a href="apartments.html" class="btn btn-secondary">View All Apartments</a>
+            </div>
+            
+            <div class="contact-form" style="margin-top: 60px;" id="contact-form">
+                <h2>Interested in this property?</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required>I'm interested in the Two-Bedroom Apartment. Please provide more information.</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-cta">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <a href="#contact-form" class="btn btn-cta floating-cta">Inquire Now</a>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/components.js"></script>
+</body>
+</html>
