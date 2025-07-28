@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apartments for Sale - Sveti Vlas</title>
+    <title>Available Apartments</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="images/logo.png" type="image/png">
-    <meta name="description" content="Browse our selection of luxury apartments for sale in Sveti Vlas, Bulgaria. Studios, one, two, and three-bedroom options available.">
+    <meta name="description" content="Browse our available apartments in Sveti Vlas, Bulgaria. One, two, and three-bedroom options available.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -14,38 +14,13 @@
 
     <section class="content">
         <div class="container">
-            <h1>Luxury Apartments for Sale</h1>
-            <p class="intro-text">Discover your dream home in our exclusive residential complex in Sveti Vlas, Bulgaria. We offer a range of premium apartments with stunning sea views and high-quality finishes.</p>
-            
-            <div class="apartment-filters" style="margin: 40px 0; text-align: center;">
-                <button class="btn btn-secondary filter-btn active" data-filter="all">All Units</button>
-                <button class="btn btn-secondary filter-btn" data-filter="studio">Studio</button>
-                <button class="btn btn-secondary filter-btn" data-filter="one-bedroom">One Bedroom</button>
-                <button class="btn btn-secondary filter-btn" data-filter="two-bedroom">Two Bedroom</button>
-                <button class="btn btn-secondary filter-btn" data-filter="three-bedroom">Three Bedroom</button>
-            </div>
+            <h1>Available Apartments</h1>
+            <p class="intro-text">Explore our range of premium apartments, each designed with luxury and comfort in mind.</p>
             
             <div class="apartment-types">
-                <div class="apartment" data-type="studio">
-                    <h3>Studio Apartment</h3>
-                    <p>Efficient and stylish living space, perfect for singles or investors.</p>
-                    <a href="studio.html" class="apartment-card">
-                        <img src="images/studio1.jpeg" alt="Studio Apartment">
-                    </a>
-                    <div class="apartment-info">
-                        <span class="apartment-size">48 sq.m</span>
-                        <span class="apartment-price">€95,000</span>
-                    </div>
-                    <div class="apartment-actions">
-                        <a href="studio.html" class="btn btn-primary">View Details</a>
-                        <a href="#contact" class="btn btn-secondary">Inquire</a>
-                    </div>
-                    <span class="availability-badge available">Available</span>
-                </div>
-                
-                <div class="apartment" data-type="one-bedroom">
+                <div class="apartment">
                     <span class="featured-label">Popular</span>
-                    <h3>One-Bedroom Apartment</h3>
+                    <h3>One-Bedroom Apartments</h3>
                     <p>Perfect for singles or couples looking for comfort and functionality.</p>
                     <a href="one-bedroom.html" class="apartment-card">
                         <img src="images/one-bedroom.png" alt="One-Bedroom Apartment">
@@ -60,9 +35,8 @@
                     </div>
                     <span class="availability-badge available">Available</span>
                 </div>
-                
-                <div class="apartment" data-type="two-bedroom">
-                    <h3>Two-Bedroom Apartment</h3>
+                <div class="apartment">
+                    <h3>Two-Bedroom Apartments</h3>
                     <p>Spacious units suitable for families needing extra space.</p>
                     <a href="two-bedroom.html" class="apartment-card">
                         <img src="images/two-bedroom.png" alt="Two-Bedroom Apartment">
@@ -77,9 +51,8 @@
                     </div>
                     <span class="availability-badge limited">Limited</span>
                 </div>
-                
-                <div class="apartment" data-type="three-bedroom">
-                    <h3>Three-Bedroom Apartment</h3>
+                <div class="apartment">
+                    <h3>Three-Bedroom Apartments</h3>
                     <p>Large apartments for bigger families, offering premium comfort.</p>
                     <a href="tree-bedroom.html" class="apartment-card">
                         <img src="images/tree-bedroom.jpg" alt="Three-Bedroom Apartment">
@@ -94,48 +67,61 @@
                     </div>
                     <span class="availability-badge limited">Limited</span>
                 </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <h2>Apartment Features</h2>
+                <p class="intro-text">All our apartments come with premium features and finishes.</p>
                 
-                <div class="apartment" data-type="one-bedroom">
-                    <h3>One-Bedroom Apartment with Sea View</h3>
-                    <p>Premium one-bedroom unit with stunning sea views from a private balcony.</p>
-                    <a href="one-bedroom.html" class="apartment-card">
-                        <img src="images/one-bedroom.png" alt="One-Bedroom Apartment with Sea View">
-                    </a>
-                    <div class="apartment-info">
-                        <span class="apartment-size">62 sq.m</span>
-                        <span class="apartment-price">€145,000</span>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-home"></i>
+                        <h3>Modern Design</h3>
+                        <p>Contemporary architecture with open floor plans and abundant natural light.</p>
                     </div>
-                    <div class="apartment-actions">
-                        <a href="one-bedroom.html" class="btn btn-primary">View Details</a>
-                        <a href="#contact" class="btn btn-secondary">Inquire</a>
+                    <div class="feature">
+                        <i class="fas fa-paint-roller"></i>
+                        <h3>Quality Finishes</h3>
+                        <p>Premium materials including hardwood floors, granite countertops, and ceramic tiles.</p>
                     </div>
-                    <span class="availability-badge limited">Limited</span>
-                </div>
-                
-                <div class="apartment" data-type="two-bedroom">
-                    <h3>Two-Bedroom Penthouse</h3>
-                    <p>Luxury penthouse with panoramic sea views and private rooftop terrace.</p>
-                    <a href="two-bedroom.html" class="apartment-card">
-                        <img src="images/two-bedroom.png" alt="Two-Bedroom Penthouse">
-                    </a>
-                    <div class="apartment-info">
-                        <span class="apartment-size">92 sq.m</span>
-                        <span class="apartment-price">€225,000</span>
+                    <div class="feature">
+                        <i class="fas fa-temperature-low"></i>
+                        <h3>Climate Control</h3>
+                        <p>Energy-efficient heating and cooling systems in every apartment.</p>
                     </div>
-                    <div class="apartment-actions">
-                        <a href="two-bedroom.html" class="btn btn-primary">View Details</a>
-                        <a href="#contact" class="btn btn-secondary">Inquire</a>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security</h3>
+                        <p>24/7 security system with video surveillance and secure entry.</p>
                     </div>
-                    <span class="availability-badge limited">Limited</span>
                 </div>
             </div>
             
-            <div class="cta-section" style="margin-top: 60px; text-align: center;">
-                <h2>Find Your Dream Home Today</h2>
-                <p>Our sales team is ready to help you find the perfect apartment that meets all your needs.</p>
-                <div class="btn-group">
-                    <a href="#contact" class="btn btn-cta">Contact Us Now</a>
-                    <a href="tel:+359885555055" class="btn btn-primary"><i class="fas fa-phone"></i> Call Agent</a>
+            <div style="margin-top: 60px;">
+                <h2>Building Amenities</h2>
+                <p class="intro-text">Enjoy premium amenities designed for comfort and convenience.</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-swimming-pool"></i>
+                        <h3>Swimming Pool</h3>
+                        <p>Outdoor swimming pool with sun loungers and relaxation area.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Fitness Center</h3>
+                        <p>Fully equipped gym with modern exercise equipment.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-tree"></i>
+                        <h3>Garden Area</h3>
+                        <p>Landscaped gardens with seating areas and walking paths.</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-car"></i>
+                        <h3>Parking</h3>
+                        <p>Secure parking spaces and garages available for all residents.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,11 +133,13 @@
             <p class="intro-text">Interested in our properties? Fill out the form below and our sales team will get back to you within 24 hours.</p>
             <div class="contact-container">
                 <div class="contact-info">
-                    <p><strong>Phone:</strong> +359885555055</p>
+                    <p><strong>CEO:</strong> Rumen Stefanov - +35988555055</p>
+                    <p><strong>General Manager:</strong> Stanislav Stefanov - +3598889622277</p>
                     <p><strong>Email:</strong> office@briliant.bg</p>
-                    <p><strong>Address:</strong> Sveti Vlas, "St.St. Cyril and Methodius" Str. №22, Bulgaria</p>
+                    <p><strong>Address:</strong> "St.St. Cyril and Methodius" Str., 8238 Ravda, Office Building next to Lidl</p>
                     <div class="btn-group" style="margin-top: 30px;">
-                        <a href="tel:+359885555055" class="btn btn-primary"><i class="fas fa-phone"></i> Call Us</a>
+                        <a href="tel:+35988555055" class="btn btn-primary"><i class="fas fa-phone"></i> Call CEO</a>
+                        <a href="tel:+3598889622277" class="btn btn-secondary"><i class="fas fa-phone"></i> Call GM</a>
                         <a href="mailto:office@briliant.bg" class="btn btn-secondary"><i class="fas fa-envelope"></i> Email Us</a>
                     </div>
                 </div>
@@ -172,10 +160,10 @@
                         <div class="form-group">
                             <label for="interest">I'm interested in</label>
                             <select id="interest" name="interest">
-                                <option value="studio">Studio Apartment</option>
                                 <option value="one-bedroom">One-Bedroom Apartment</option>
                                 <option value="two-bedroom">Two-Bedroom Apartment</option>
                                 <option value="three-bedroom">Three-Bedroom Apartment</option>
+                                <option value="parking">Parking/Garage</option>
                                 <option value="other">Other Inquiry</option>
                             </select>
                         </div>
@@ -195,36 +183,6 @@
     <div id="footer-placeholder"></div>
 
     <script src="js/components.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        // Simple filter functionality for apartments
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const apartments = document.querySelectorAll('.apartment');
-            
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    
-                    // Add active class to clicked button
-                    this.classList.add('active');
-                    
-                    // Get filter value
-                    const filter = this.getAttribute('data-filter');
-                    
-                    // Show/hide apartments based on filter
-                    apartments.forEach(apt => {
-                        if (filter === 'all' || apt.getAttribute('data-type') === filter) {
-                            apt.style.display = 'block';
-                        } else {
-                            apt.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
     
