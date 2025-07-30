@@ -167,6 +167,8 @@ function getImagePath(imageName) {
 
 // Get correct path for a page based on current language
 function getPagePath(pageName, lang) {
+  // remove any leading '/' in pageName to avoid double slashes
+  pageName = pageName.replace(/^\/+/, '');
   const currentLang = lang || getCurrentLanguage();
   
   if (isFileProtocol) {
@@ -176,11 +178,12 @@ function getPagePath(pageName, lang) {
       return pageName;
     }
   } else {
-    // For web hosting
+    // Normalize baseUrl (no trailing slash)
+    const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
     if (currentLang === 'en') {
-      return baseUrl + '/' + pageName;
+      return `${normalizedBase}/${pageName}`.replace(/^\/+/, '/'); // always start with exactly one '/'
     } else {
-      return baseUrl + '/' + currentLang + '/' + pageName;
+      return `${normalizedBase}/${currentLang}/${pageName}`.replace(/^\/+/, '/');
     }
   }
 }
@@ -206,22 +209,18 @@ function loadHeader() {
       <nav class="main-nav">
         <ul>
           <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}">${t.home}</a></li>
-          <li><a href="${getPagePath('/apartments.html', currentLang)}">${t.apartments}</a></li>
-          <li><a href="${getPagePath('/parking.html', currentLang)}">${t.parking}</a></li>
-          <li><a href="${getPagePath('/about.html', currentLang)}">${t.about}</a></li>
-          <li><a href="${getPagePath('/contact.html', currentLang)}">${t.contact}</a></li>
+          <li><a href="${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
+          <li><a href="${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
+          <li><a href="${getPagePath('about.html', currentLang)}">${t.about}</a></li>
+          <li><a href="${getPagePath('contact.html', currentLang)}">${t.contact}</a></li>
         </ul>
       </nav>
       <div class="language-switcher">
-        <a href="${getLanguageUrl('bg')}" class="${currentLang === 'bg' ? 'active' : ''}">
-          <img src="${getImagePath('bg-flag.png')}" alt="Bulgarian" />
-        </a>
-        <a href="${getLanguageUrl('ru')}" class="${currentLang === 'ru' ? 'active' : ''}">
-          <img src="${getImagePath('ru-flag.png')}" alt="Russian" />
-        </a>
-        <a href="${getLanguageUrl('en')}" class="${currentLang === 'en' ? 'active' : ''}">
-          <img src="${getImagePath('uk-flag.png')}" alt="English" />
-        </a>
+        <select id="language-select" aria-label="Language select">
+          <option value="en">EN</option>
+          <option value="bg">BG</option>
+          <option value="ru">RU</option>
+        </select>
       </div>
     </div>
   `;
@@ -378,6 +377,18 @@ function initComponents() {
       }
     });
   }, 100);
+
+  // Setup language dropdown after DOM updates
+  setTimeout(() => {
+    const languageSelect = document.getElementById('language-select');
+    if (languageSelect) {
+      languageSelect.value = getCurrentLanguage();
+      languageSelect.addEventListener('change', (e) => {
+        const targetLang = e.target.value;
+        window.location.href = getLanguageUrl(targetLang);
+      });
+    }
+  }, 150);
 }
 
 // Run when DOM is fully loaded
