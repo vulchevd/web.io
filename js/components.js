@@ -208,11 +208,11 @@ function loadHeader() {
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="${getPagePath('/index.html', currentLang)}">${t.home}</a></li>
-          <li><a href="${getPagePath('/apartments.html', currentLang)}">${t.apartments}</a></li>
-          <li><a href="${getPagePath('/parking.html', currentLang)}">${t.parking}</a></li>
-          <li><a href="${getPagePath('/about.html', currentLang)}">${t.about}</a></li>
-          <li><a href="${getPagePath('/contact.html', currentLang)}">${t.contact}</a></li>
+          <li><a href="/${getPagePath('index.html', currentLang)}">${t.home}</a></li>
+          <li><a href="/${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
+          <li><a href="/${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
+          <li><a href="/${getPagePath('about.html', currentLang)}">${t.about}</a></li>
+          <li><a href="/${getPagePath('contact.html', currentLang)}">${t.contact}</a></li>
         </ul>
       </nav>
       <div class="language-switcher">
@@ -302,10 +302,10 @@ function loadFooter() {
         <h3>${t.footer.quickLinks}</h3>
         <ul>
           <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}">${t.home}</a></li>
-          <li><a href="${getPagePath('/apartments.html', currentLang)}">${t.apartments}</a></li>
-          <li><a href="${getPagePath('/parking.html', currentLang)}">${t.parking}</a></li>
-          <li><a href="${getPagePath('/about.html', currentLang)}">${t.about}</a></li>
-          <li><a href="${getPagePath('/contact.html', currentLang)}">${t.contact}</a></li>
+          <li><a href="/${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
+          <li><a href="/${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
+          <li><a href="/${getPagePath('about.html', currentLang)}">${t.about}</a></li>
+          <li><a href="/${getPagePath('contact.html', currentLang)}">${t.contact}</a></li>
         </ul>
       </div>
       <div class="footer-section legal-links">
