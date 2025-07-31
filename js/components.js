@@ -197,7 +197,7 @@ function loadHeader() {
   header.innerHTML = `
     <div class="header-container">
       <div class="logo-menu-container">
-        <a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}" class="logo">
+        <a href="${getPagePath('index.html', currentLang)}" class="logo">
           <span class="logo-text">Briliant Properties</span>
         </a>
         <div class="menu-toggle">
@@ -208,7 +208,7 @@ function loadHeader() {
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="${currentLang === 'en' ? (isFileProtocol ? 'index.html' : baseUrl + '/') : (isFileProtocol ? '../index.html' : baseUrl + '/' + currentLang + '/')}">${t.home}</a></li>
+          <li><a href="${getPagePath('index.html', currentLang)}">${t.home}</a></li>
           <li><a href="${getPagePath('apartments.html', currentLang)}">${t.apartments}</a></li>
           <li><a href="${getPagePath('parking.html', currentLang)}">${t.parking}</a></li>
           <li><a href="${getPagePath('about.html', currentLang)}">${t.about}</a></li>
