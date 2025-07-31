@@ -138,7 +138,7 @@ function getLanguageUrl(targetLang) {
     
     // For other pages
     if (targetLang === 'en') {
-      return baseUrl + '/' + baseName;
+      return '/' + baseName;
     } else {
       return baseUrl + '/' + targetLang + '/' + baseName;
     }
