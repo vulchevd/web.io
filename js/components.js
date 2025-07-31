@@ -90,12 +90,11 @@ function getCurrentLanguage() {
 
 // Generate language-specific URL
 function getLanguageUrl(targetLang) {
-  const isFileProtocol = window.location.protocol === 'file:';
   const currentPath = window.location.pathname;
   const filename = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
   const currentLang = getCurrentLanguage();
-
-  // Извличане на името на текущата страница
+  
+  // Extract the current file name
   let baseName = filename;
   if (!baseName.endsWith('.html') && baseName !== '') {
     baseName += '.html';
@@ -103,50 +102,46 @@ function getLanguageUrl(targetLang) {
   if (baseName === '') {
     baseName = 'index.html';
   }
-
-  // Определяне на baseUrl (само при хостнат сайт, не локално)
-  let baseUrl = '';
-  if (!isFileProtocol) {
-    const segments = window.location.pathname.split('/').filter(Boolean);
-    if (segments.length && !['bg', 'ru', 'en'].includes(segments[0])) {
-      baseUrl = '/' + segments[0];
-    }
-  }
-
-  const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
-
-  // === Локално отваряне (file://)
+  
   if (isFileProtocol) {
+    // File protocol handling (for local development)
     if (targetLang === 'en') {
+      // If we're in a language folder, go up one level
       if (currentLang !== 'en') {
         return '../' + baseName;
       } else {
         return baseName;
       }
     } else {
+      // If we're already in the target language folder
       if (currentLang === targetLang) {
         return baseName;
       }
+      
+      // If we're in English (root)
       if (currentLang === 'en') {
         return targetLang + '/' + baseName;
       }
+      
+      // If we're in a different language folder
       return '../' + targetLang + '/' + baseName;
     }
-  }
-
-  // === Хостнат сайт (https://...)
-  if (baseName === 'index.html' || baseName === '') {
-    if (targetLang === 'en') {
-      return `${normalizedBase}/`.replace(/^\/+/, '/');
-    } else {
-      return `${normalizedBase}/${targetLang}/`.replace(/^\/+/, '/');
-    }
-  }
-
-  if (targetLang === 'en') {
-    return `${normalizedBase}/${baseName}`.replace(/^\/+/, '/');
   } else {
-    return `${normalizedBase}/${targetLang}/${baseName}`.replace(/^\/+/, '/');
+    // For web hosting URLs
+    if (baseName === 'index.html' || baseName === '') {
+      if (targetLang === 'en') {
+        return baseUrl + '/';
+      } else {
+        return baseUrl + '/' + targetLang + '/';
+      }
+    }
+    
+    // For other pages
+    if (targetLang === 'en') {
+      return baseUrl + '/' + baseName;
+    } else {
+      return baseUrl + '/' + targetLang + '/' + baseName;
+    }
   }
 }
 
