@@ -67,10 +67,16 @@ const isFileProtocol = window.location.protocol === 'file:';
 let baseUrl = '';
 if (!isFileProtocol) {
   const segments = window.location.pathname.split('/').filter(Boolean); // remove empty strings
-  // If the first segment looks like a repo name (and not a language code like 'bg') use it.
-  // We treat 'bg', 'ru', 'en' as language folders, so if the first segment is one of those
-  // we leave baseUrl empty. Otherwise we assume it's the project name.
-  if (segments.length && !['bg', 'ru', 'en'].includes(segments[0])) {
+  // Treat the first segment as a repo name ONLY when we're on a GitHub Pages *project* site.
+  // That means the path will look like "/repoName/..." (at least two segments and the first
+  // segment will not contain a dot). For user/organization sites the very first segment is
+  // usually a file (e.g. "about.html"), so we must not treat it as a repo folder or we will
+  // end up duplicating paths like "/about.html/about.html".
+  if (
+    segments.length &&
+    !['bg', 'ru', 'en'].includes(segments[0]) && // not a language folder
+    !segments[0].includes('.')    // not a file like "index.html"
+  ) {
     baseUrl = '/' + segments[0];
   }
 }
